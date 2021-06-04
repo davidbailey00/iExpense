@@ -61,7 +61,10 @@ struct AddView: View {
             }
         }
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text("Amount must be a number"))
+            Alert(
+                title: Text("Error adding expense"),
+                message: Text("Amount must be a number")
+            )
         }
     }
 }
