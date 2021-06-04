@@ -59,6 +59,10 @@ struct ContentView: View {
             }
             .navigationTitle("iExpense")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingAddExpense = true

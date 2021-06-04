@@ -32,6 +32,11 @@ struct AddView: View {
             }
             .navigationTitle("Add new expense")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         if let actualAmount = Int(self.amount) {
@@ -44,6 +49,7 @@ struct AddView: View {
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
+                    .disabled(name.isEmpty || amount.isEmpty)
                 }
             }
         }
