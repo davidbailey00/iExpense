@@ -14,6 +14,7 @@ struct AddView: View {
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = ""
+    @State private var showingAlert = false
     static let types = ["Business", "Personal"]
 
     var body: some View {
@@ -27,8 +28,12 @@ struct AddView: View {
                     }
                 }
 
-                TextField("Amount", text: $amount)
-                    .keyboardType(.numberPad)
+                HStack {
+                    Text("£")
+                    TextField("Amount", text: $amount)
+                        .keyboardType(.numberPad)
+                        .labelsHidden()
+                }
             }
             .navigationTitle("Add new expense")
             .toolbar {
@@ -47,11 +52,16 @@ struct AddView: View {
                             )
                             expenses.items.append(item)
                             presentationMode.wrappedValue.dismiss()
+                        } else {
+                            showingAlert = true
                         }
                     }
                     .disabled(name.isEmpty || amount.isEmpty)
                 }
             }
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Amount must be a number"))
         }
     }
 }
