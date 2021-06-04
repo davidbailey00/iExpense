@@ -53,6 +53,10 @@ struct ContentView: View {
 
                         Spacer()
                         Text("£\(item.amount)")
+                            .foregroundColor(
+                                item.amount < 10 ? .green :
+                                    item.amount >= 100 ? .red : nil
+                            )
                     }
                 }
                 .onDelete(perform: removeItems)
