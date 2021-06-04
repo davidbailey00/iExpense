@@ -56,6 +56,7 @@ struct ContentView: View {
                     }
                 }
                 .onDelete(perform: removeItems)
+                .onMove(perform: moveItems)
             }
             .navigationTitle("iExpense")
             .toolbar {
@@ -79,6 +80,10 @@ struct ContentView: View {
 
     func removeItems(at offsets: IndexSet) {
         expenses.items.remove(atOffsets: offsets)
+    }
+
+    func moveItems(from source: IndexSet, to dest: Int) {
+        expenses.items.move(fromOffsets: source, toOffset: dest)
     }
 }
 
